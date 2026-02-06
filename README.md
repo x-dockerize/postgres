@@ -172,6 +172,16 @@ docker exec postgres-backup /backup.sh
 
 ---
 
+### Uygulama veritabanı oluşturma
+
+Her uygulama için ayrı bir veritabanı ve kullanıcı oluşturmak için aşağıdaki komutu kullanabilirsiniz:
+
+```bash
+./app_db_setup.sh
+```
+
+---
+
 ## 🚀 Olası Geliştirmeler
 
 * WAL / PITR (Point-in-Time Recovery)
