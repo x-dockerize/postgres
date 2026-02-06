@@ -7,4 +7,5 @@
 /.nova
 /.vscode
 /.zed
+/.docker/postgres/data
 docker-compose.yml
