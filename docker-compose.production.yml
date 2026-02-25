@@ -19,12 +19,12 @@ services:
     image: prodrigestivill/postgres-backup-local
     container_name: postgres-backup-local
     restart: unless-stopped
-    env_file: .env
-    volumes:
-      - ./.docker/postgres-backup/backups:/backups
     depends_on:
       postgres:
         condition: service_healthy
+    env_file: .env
+    volumes:
+      - ./.docker/postgres-backup/backups:/backups
     networks:
       - postgres-network
 
@@ -32,12 +32,12 @@ services:
     image: eeshugerman/postgres-backup-s3:16
     container_name: postgres-backup-do
     restart: unless-stopped
-    env_file: .env
-    environment:
-      POSTGRES_DATABASE: ${POSTGRES_DB}
     depends_on:
       postgres:
         condition: service_healthy
+    env_file: .env
+    environment:
+      POSTGRES_DATABASE: ${POSTGRES_DB}
     networks:
       - postgres-network
 
@@ -45,6 +45,9 @@ services:
     image: eeshugerman/postgres-backup-s3:16
     container_name: postgres-backup-oci
     restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
     env_file: .env
     environment:
       POSTGRES_DATABASE: ${POSTGRES_DB}
@@ -54,9 +57,6 @@ services:
       S3_BUCKET: ${S3_BUCKET_2}
       S3_PREFIX: ${S3_PREFIX_2}
       S3_REGION: ${S3_REGION_2}
-    depends_on:
-      postgres:
-        condition: service_healthy
     networks:
       - postgres-network
 
