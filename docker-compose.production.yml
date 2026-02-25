@@ -25,7 +25,8 @@ services:
     volumes:
       - ./.docker/postgres-backup/backups:/backups
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - postgres-network
 
