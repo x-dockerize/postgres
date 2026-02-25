@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:16
+    image: postgres:${POSTGRES_VERSION:?required}
     container_name: postgres
     restart: unless-stopped
     env_file: .env
@@ -16,7 +16,7 @@ services:
       start_period: 20s
 
   postgres-backup-local:
-    image: prodrigestivill/postgres-backup-local:16
+    image: prodrigestivill/postgres-backup-local:${POSTGRES_VERSION:?required}
     container_name: postgres-backup-local
     restart: unless-stopped
     depends_on:
@@ -29,7 +29,7 @@ services:
       - postgres-network
 
   postgres-backup-do:
-    image: eeshugerman/postgres-backup-s3:16
+    image: eeshugerman/postgres-backup-s3:${POSTGRES_VERSION:?required}
     container_name: postgres-backup-do
     restart: unless-stopped
     depends_on:
@@ -42,7 +42,7 @@ services:
       - postgres-network
 
   postgres-backup-oci:
-    image: eeshugerman/postgres-backup-s3:16
+    image: eeshugerman/postgres-backup-s3:${POSTGRES_VERSION:?required}
     container_name: postgres-backup-oci
     restart: unless-stopped
     depends_on:
