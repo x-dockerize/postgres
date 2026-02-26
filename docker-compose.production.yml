@@ -8,6 +8,7 @@ services:
       - ./.docker/postgres/data:/var/lib/postgresql/data
     networks:
       - postgres-network
+      - internal-network
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}" ]
       interval: 10s
@@ -26,7 +27,7 @@ services:
     volumes:
       - ./.docker/postgres-backup/backups:/backups
     networks:
-      - postgres-network
+      - internal-network
 
   postgres-backup-do:
     image: eeshugerman/postgres-backup-s3:${POSTGRES_VERSION:?required}
@@ -39,7 +40,7 @@ services:
     environment:
       POSTGRES_DATABASE: ${POSTGRES_DB}
     networks:
-      - postgres-network
+      - internal-network
 
   postgres-backup-oci:
     image: eeshugerman/postgres-backup-s3:${POSTGRES_VERSION:?required}
@@ -58,9 +59,10 @@ services:
       S3_PREFIX: ${S3_PREFIX_2}
       S3_REGION: ${S3_REGION_2}
     networks:
-      - postgres-network
+      - internal-network
 
 
 networks:
+  internal-network:
   postgres-network:
     external: true
