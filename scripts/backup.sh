@@ -41,7 +41,8 @@ echo "  1) Tümü"
 echo "  2) Local"
 echo "  3) DigitalOcean"
 echo "  4) Oracle OCI"
-read -rp "Seçim (1-4): " CHOICE
+read -rp "Seçim (1-4, boş bırakılırsa: Tümü): " CHOICE
+CHOICE="${CHOICE:-1}"
 
 echo
 
