@@ -75,10 +75,10 @@ fi
 # --------------------------------------------------
 echo
 echo "==============================================="
-echo "✅ PostgreSQL .env başarıyla hazırlandı"
+echo "✅ PostgreSQL .env başarıyla hazırlandı!"
 echo "-----------------------------------------------"
 echo "👤 Kullanıcı Adı     : $POSTGRES_USER"
 echo "🔑 Şifre             : $POSTGRES_PASSWORD"
 echo "-----------------------------------------------"
-echo "⚠️  Şifreyi güvenli bir yerde saklayın!"
+echo "⚠️ Şifreyi güvenli bir yerde saklayın!"
 echo "==============================================="
