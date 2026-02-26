@@ -60,6 +60,17 @@ set_env POSTGRES_USER "$POSTGRES_USER"
 set_env POSTGRES_PASSWORD "$POSTGRES_PASSWORD"
 
 # --------------------------------------------------
+# Docker Network
+# --------------------------------------------------
+NETWORK_NAME="postgres-network"
+if docker network inspect "$NETWORK_NAME" > /dev/null 2>&1; then
+  echo "ℹ️  Docker network '$NETWORK_NAME' zaten mevcut"
+else
+  docker network create "$NETWORK_NAME"
+  echo "✅ Docker network '$NETWORK_NAME' oluşturuldu"
+fi
+
+# --------------------------------------------------
 # Sonuçları Göster
 # --------------------------------------------------
 echo
